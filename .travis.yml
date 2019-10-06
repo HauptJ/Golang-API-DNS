@@ -1,0 +1,17 @@
+language: go
+
+go:
+  - 1.13.1
+  - master
+
+before_script:
+- "go get github.com/google/go-cmp/cmp"
+- "go get github.com/gorilla/context"
+- "go get github.com/gorilla/mux"
+- "go get golang.org/x/net/context/ctxhttp"
+
+script:
+- "pushd ./API"
+- "pushd ./MXLookup"
+- "go test -v"
+- "popd"
