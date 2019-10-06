@@ -3,6 +3,7 @@ package MXLookup
 import (
 	"testing"
 	"net"
+	"github.com/google/go-cmp/cmp"
 )
 
 func TestMXLookupSuccess(t *testing.T) {
@@ -14,8 +15,17 @@ func TestMXLookupSuccess(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
+	if cmp.Equal(actualResult, expectedResult) {
+		t.Fatalf("Records are not equal")
+	}
+}
 
-	if &actualResult != &expectedResult {
+func TestMXLookupFailure(t *testing.T) {
+	actualResult, _ := GetMXRecord("net.hauptj.com")
+
+	expectedResult, _ := net.LookupMX("net.hauptj.com")
+
+	if !(cmp.Equal(actualResult, expectedResult)) {
 		t.Fatalf("Records are not equal")
 	}
 }
