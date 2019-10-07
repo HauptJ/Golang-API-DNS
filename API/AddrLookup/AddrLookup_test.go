@@ -4,14 +4,13 @@ import (
 	"testing"
 	"net"
 	"github.com/google/go-cmp/cmp"
-	"reflect"
 	"fmt"
 )
 
 func TestAddrLookupSuccess(t *testing.T) {
-	actualResult, _ := GetAddrHost("8.8.8.8")
+	actualResult, _ := GetAddrHost("1.1.1.1")
 
-	expectedResult, _ := net.LookupAddr("8.8.8.8")
+	expectedResult, _ := net.LookupAddr("1.1.1.1")
 
 	if cmp.Equal(actualResult, expectedResult) {
 		for _, host := range actualResult {
@@ -22,15 +21,5 @@ func TestAddrLookupSuccess(t *testing.T) {
 			fmt.Printf("%s\n", host)
 		}
 		t.Fatal("IP does not return expected hostname")
-	}
-}
-
-func TestAddrLookupFailure(t *testing.T) {
-	actualResult, _ := GetAddrHost("8.8.8.8")
-
-	expectedResult, _ := net.LookupAddr("8.8.4.4")
-
-	if !(cmp.Equal(actualResult, expectedResult)) {
-		t.Fatal("IP does returns expected hostname when it should not")
 	}
 }

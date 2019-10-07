@@ -22,8 +22,8 @@ func MXLookupEndPt(writer http.ResponseWriter, req *http.Request) {
 
 func AddrLookupEndPt(writer http.ResponseWriter, req *http.Request) {
 	params := mux.Vars(req)
-	hostnames, err := AddrLookup.GetMXRecord(params["host"])
-	if err != null {
+	hostnames, err := AddrLookup.GetAddrHost(params["host"])
+	if err != nil {
 		respondWithError(writer, http.StatusBadRequest, err.Error())
 	} else {
 		respondWithJson(writer, http.StatusOK, hostnames)
@@ -49,9 +49,9 @@ func main() {
 
 	// Endpoints
 	router.HandleFunc("/mxlookup/{host}", MXLookupEndPt).Methods("GET")
-	router.HandleFunc("/addrlookup/{host}", AddrLookupEndPt).Methods("GET")
+	router.HandleFunc("/addr/{host}", AddrLookupEndPt).Methods("GET")
 	
-	if err := http.ListenAndServe(":8880", router); err != nil {
+	if err := http.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
 	}
 }
