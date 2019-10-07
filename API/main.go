@@ -50,7 +50,7 @@ func main() {
 	// Endpoints
 	router.HandleFunc("/mx/{host}", MXLookupEndPt).Methods("GET")
 	router.HandleFunc("/cname/{host}", CNAMELookupEndPt).Methods("GET")
-	if err := http.ListenAndServe(":8880", router); err != nil {
+	if err := http.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
 	}
 }
