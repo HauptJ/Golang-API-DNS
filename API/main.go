@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 
 	"./MXLookup"
+	"./CNAMELookup"
 )
 
 func MXLookupEndPt(writer http.ResponseWriter, req *http.Request) {
@@ -16,6 +17,16 @@ func MXLookupEndPt(writer http.ResponseWriter, req *http.Request) {
 		respondWithError(writer, http.StatusBadRequest, err.Error())
 	} else {
 		respondWithJson(writer, http.StatusOK, mxRecord)
+	}
+}
+
+func CNAMELookupEndPt(writer http.ResponseWriter, req *http.Request) {
+	params := mux.Vars(req)
+	cnameRecord, err := CNAMELookup.GetCNAMERecord(params["host"])
+	if err != nil {
+		respondWithError(writer, http.StatusBadRequest, err.Error())
+	} else {
+		respondWithError(writer, http.StatusOK, cnameRecord)
 	}
 }
 
@@ -38,7 +49,7 @@ func main() {
 
 	// Endpoints
 	router.HandleFunc("/mxlookup/{host}", MXLookupEndPt).Methods("GET")
-	
+	router.HandleFunc("/cname/{host}", CNAMELookupEndPt).Methods("GET")
 	if err := http.ListenAndServe(":8880", router); err != nil {
 		log.Fatal(err)
 	}
