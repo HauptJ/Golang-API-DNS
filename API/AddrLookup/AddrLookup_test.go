@@ -3,23 +3,28 @@ package AddrLookup
 import (
 	"testing"
 	"net"
-	"github.com/google/go-cmp/cmp"
 	"fmt"
 )
+
+func Equal(a []string, b []string) (bool) {
+	if (len(a) != len(b)) {
+		return false
+	}
+	
+	for i, host := range a {
+		if (host != b[i]) {
+			return false
+		}
+	}
+	return true
+}
 
 func TestAddrLookupSuccess(t *testing.T) {
 	actualResult, _ := GetAddrHost("1.1.1.1")
 
 	expectedResult, _ := net.LookupAddr("1.1.1.1")
 
-	if cmp.Equal(actualResult, expectedResult) {
-		for _, host := range actualResult {
-			fmt.Printf("%s\n", host)
-		}
-
-		for _, host := range expectedResult {
-			fmt.Printf("%s\n", host)
-		}
+	if !Equal(actualResult, expectedResult) {
 		t.Fatal("IP does not return expected hostname")
 	}
 }
