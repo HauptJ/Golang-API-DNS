@@ -26,7 +26,7 @@ func CNAMELookupEndPt(writer http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		respondWithError(writer, http.StatusBadRequest, err.Error())
 	} else {
-		respondWithError(writer, http.StatusOK, cnameRecord)
+		respondWithJson(writer, http.StatusOK, cnameRecord)
 	}
 }
 
