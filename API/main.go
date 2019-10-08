@@ -8,7 +8,9 @@ import (
 
 	"./MXLookup"
 	"./AddrLookup"
+	"./CNAMELookup"
 )
+
 
 func MXLookupEndPt(writer http.ResponseWriter, req *http.Request) {
 	params := mux.Vars(req)
@@ -20,6 +22,7 @@ func MXLookupEndPt(writer http.ResponseWriter, req *http.Request) {
 	}
 }
 
+
 func AddrLookupEndPt(writer http.ResponseWriter, req *http.Request) {
 	params := mux.Vars(req)
 	hostnames, err := AddrLookup.GetAddrHost(params["host"])
@@ -27,12 +30,25 @@ func AddrLookupEndPt(writer http.ResponseWriter, req *http.Request) {
 		respondWithError(writer, http.StatusBadRequest, err.Error())
 	} else {
 		respondWithJson(writer, http.StatusOK, hostnames)
+  }
+}
+
+
+func CNAMELookupEndPt(writer http.ResponseWriter, req *http.Request) {
+	params := mux.Vars(req)
+	cnameRecord, err := CNAMELookup.GetCNAMERecord(params["host"])
+	if err != nil {
+		respondWithError(writer, http.StatusBadRequest, err.Error())
+	} else {
+		respondWithJson(writer, http.StatusOK, cnameRecord)
 	}
 }
+
 
 func respondWithError(writer http.ResponseWriter, code int, msg string) {
 	respondWithJson(writer, code, map[string]string{"ERROR": msg})
 }
+
 
 func respondWithJson(writer http.ResponseWriter, code int, payload interface{}) {
 	response, err := json.Marshal(payload)
@@ -44,13 +60,15 @@ func respondWithJson(writer http.ResponseWriter, code int, payload interface{}) 
 	writer.Write(response)
 }
 
+
 func main() {
 	router := mux.NewRouter()
 
 	// Endpoints
-	router.HandleFunc("/mxlookup/{host}", MXLookupEndPt).Methods("GET")
 	router.HandleFunc("/addr/{host}", AddrLookupEndPt).Methods("GET")
-	
+	router.HandleFunc("/mx/{host}", MXLookupEndPt).Methods("GET")
+	router.HandleFunc("/cname/{host}", CNAMELookupEndPt).Methods("GET")
+  
 	if err := http.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
 	}
