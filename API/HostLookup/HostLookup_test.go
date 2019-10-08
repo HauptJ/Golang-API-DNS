@@ -1,4 +1,4 @@
-package AddrLookup
+package HostLookup
 
 import (
 	"testing"
@@ -18,12 +18,12 @@ func Equal(a []string, b []string) (bool) {
 	return true
 }
 
-func TestAddrLookupSuccess(t *testing.T) {
-	actualResult, _ := GetAddrHost("1.1.1.1")
+func TestHostLookupSuccess(t *testing.T) {
+	actualResult, _ := GetHostRecord("localhost")
 
-	expectedResult, _ := net.LookupAddr("1.1.1.1")
+	expectedResult, _ := net.LookupHost("localhost")
 
 	if !Equal(actualResult, expectedResult) {
-		t.Fatal("IP does not return expected hostname")
+		t.Fatalf("hostname did not return expected IP")
 	}
 }

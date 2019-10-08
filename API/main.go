@@ -9,6 +9,7 @@ import (
 	"./MXLookup"
 	"./AddrLookup"
 	"./CNAMELookup"
+	"./HostLookup"
 )
 
 
@@ -44,6 +45,16 @@ func CNAMELookupEndPt(writer http.ResponseWriter, req *http.Request) {
 	}
 }
 
+func HostLookupEndPt(writer http.ResponseWriter, req *http.Request) {
+	params := mux.Vars(req)
+	cnameRecord, err := HostLookup.GetHostRecord(params["host"])
+	if err != nil {
+		respondWithError(writer, http.StatusBadRequest, err.Error())
+	} else {
+		respondWithJson(writer, http.StatusOK, cnameRecord)
+	}
+}
+
 
 func respondWithError(writer http.ResponseWriter, code int, msg string) {
 	respondWithJson(writer, code, map[string]string{"ERROR": msg})
@@ -68,6 +79,8 @@ func main() {
 	router.HandleFunc("/addr/{host}", AddrLookupEndPt).Methods("GET")
 	router.HandleFunc("/mx/{host}", MXLookupEndPt).Methods("GET")
 	router.HandleFunc("/cname/{host}", CNAMELookupEndPt).Methods("GET")
+	router.HandleFunc("/host/{host}", HostLookupEndPt).Methods("GET")
+
   
 	if err := http.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
