@@ -5,10 +5,10 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
-	"github.com/HauptJ/Golang-API-DNS/API/MXLookup"
-	"github.com/HauptJ/Golang-API-DNS/API/AddrLookup"
-	"github.com/HauptJ/Golang-API-DNS/API/CNAMELookup"
-	"github.com/HauptJ/Golang-API-DNS/API/HostLookup"
+	"github.com/HauptJ/Golang-API-DNS/MXLookup"
+	"github.com/HauptJ/Golang-API-DNS/AddrLookup"
+	"github.com/HauptJ/Golang-API-DNS/CNAMELookup"
+	"github.com/HauptJ/Golang-API-DNS/HostLookup"
 )
 
 
@@ -80,7 +80,6 @@ func main() {
 	router.HandleFunc("/cname/{host}", CNAMELookupEndPt).Methods("GET")
 	router.HandleFunc("/host/{host}", HostLookupEndPt).Methods("GET")
 
-  
 	if err := http.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
 	}
