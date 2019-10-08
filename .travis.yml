@@ -4,7 +4,7 @@ go:
   - 1.13.1
   - master
 
-before_script:
+before_install:
 - "go get github.com/google/go-cmp/cmp"
 - "go get github.com/gorilla/context"
 - "go get github.com/gorilla/mux"
