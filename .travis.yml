@@ -2,13 +2,12 @@ language: go
 
 go:
   - 1.13.1
-  - master
+  #- master
 
-go_import_path:
-  - github.com/gorilla/mux
-  - github.com/google/go-cmp/cmp
+#go_import_path:
+#  - github.com/gorilla/mux
+#  - github.com/google/go-cmp/cmp
 
 script:
-  - "pushd ./API"
+  - go build
   - go test -v ./...
-  - popd

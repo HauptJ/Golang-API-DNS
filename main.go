@@ -5,10 +5,10 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
-	"github.com/HauptJ/Golang-API-DNS/API/MXLookup"
-	"github.com/HauptJ/Golang-API-DNS/API/AddrLookup"
-	"github.com/HauptJ/Golang-API-DNS/API/CNAMELookup"
-	"github.com/HauptJ/Golang-API-DNS/API/HostLookup"
+	"github.com/HauptJ/Golang-API-DNS/MXLookup"
+	"github.com/HauptJ/Golang-API-DNS/AddrLookup"
+	"github.com/HauptJ/Golang-API-DNS/CNAMELookup"
+	"github.com/HauptJ/Golang-API-DNS/HostLookup"
 )
 
 
