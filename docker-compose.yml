@@ -1,0 +1,16 @@
+version: '3'
+services:
+  api:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: DNS_API
+    ports:
+      - "8080:8080"
+    command: ["/DNSAPI/main"]
+    healthcheck:
+      test: curl --fail -s http://localhost:8080/host/google.com || exit 1
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
