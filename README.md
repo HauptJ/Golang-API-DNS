@@ -1,8 +1,12 @@
 # Golang-API-DNS
+[![Build Status](https://travis-ci.org/HauptJ/Golang-API-DNS.svg?branch=master)](https://travis-ci.org/HauptJ/Golang-API-DNS)
+
 A simple Golang REST API for DNS queries.
 
+[Docker Instructions](https://github.com/HauptJ/Golang-API-DNS-Docker)
+
 ### To Build and Run:
-- **NOTE 1:** Port `8080` or the one specified in `main.go` must be available.
+- **NOTE:** Port `8080` or the one specified in `main.go` must be available.
 
 1. Install Golang if you want to run the API on your host machine.
   - [Golang Download and installation instructions](https://golang.org/dl/)
