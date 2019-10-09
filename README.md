@@ -13,7 +13,12 @@ A simple Golang REST API for DNS queries.
 
 
 2. Install Golang dependencies if you want to run the API on your host machine. If you wish to run the API in a Docker container, you can skip this step.
-  - `go get github.com/gorilla/mux`
+  - `go get -u github.com/gorilla/mux`
+  - `go get -u github.com/google/go-cmp/cmp`
+  - `go get -u github.com/HauptJ/Golang-API-DNS/MXLookup`
+  - `go get -u github.com/HauptJ/Golang-API-DNS/AddrLookup`
+  - `go get -u github.com/HauptJ/Golang-API-DNS/CNAMELookup`
+  - `go get -u github.com/HauptJ/Golang-API-DNS/HostLookup`
 
 3. To run on host system
   1. `go build main.go`
