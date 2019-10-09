@@ -25,4 +25,3 @@ func TestMXLookupFailure(t *testing.T) {
 		t.Fatalf("Records are not equal")
 	}
 }
-
