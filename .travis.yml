@@ -2,11 +2,7 @@ language: go
 
 go:
   - 1.13.1
-  #- master
-
-#go_import_path:
-#  - github.com/gorilla/mux
-#  - github.com/google/go-cmp/cmp
+  - master
 
 script:
   - go build
