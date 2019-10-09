@@ -2,17 +2,17 @@
 
 
 [[projects]]
-  branch = "dev_host"
-  digest = "1:64ab1de4ddff4aa42852a047f4572df8e4459cef8610589a27e98f9fbdc79a17"
+  branch = "master"
+  digest = "1:af28af1dc2ac5fd867031bc5cfe21c54f2723861d84ff39bd022cd6cec4f58ca"
   name = "github.com/HauptJ/Golang-API-DNS"
   packages = [
-    "API/AddrLookup",
-    "API/CNAMELookup",
-    "API/HostLookup",
-    "API/MXLookup",
+    "AddrLookup",
+    "CNAMELookup",
+    "HostLookup",
+    "MXLookup",
   ]
   pruneopts = "UT"
-  revision = "54c0438a874de7105dc9499b6539114a3cce4ee9"
+  revision = "0158069039ac2b6793109dfd483586b99e87409c"
 
 [[projects]]
   digest = "1:1d1cbf539d9ac35eb3148129f96be5537f1a1330cadcc7e3a83b4e72a59672a3"
@@ -40,10 +40,10 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/HauptJ/Golang-API-DNS/API/AddrLookup",
-    "github.com/HauptJ/Golang-API-DNS/API/CNAMELookup",
-    "github.com/HauptJ/Golang-API-DNS/API/HostLookup",
-    "github.com/HauptJ/Golang-API-DNS/API/MXLookup",
+    "github.com/HauptJ/Golang-API-DNS/AddrLookup",
+    "github.com/HauptJ/Golang-API-DNS/CNAMELookup",
+    "github.com/HauptJ/Golang-API-DNS/HostLookup",
+    "github.com/HauptJ/Golang-API-DNS/MXLookup",
     "github.com/google/go-cmp/cmp",
     "github.com/gorilla/mux",
   ]
