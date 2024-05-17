@@ -3,8 +3,6 @@
 
 A simple Golang REST API for DNS queries.
 
-[Docker Instructions](https://github.com/HauptJ/Golang-API-DNS-Docker)
-
 ### To Build and Run:
 - **NOTE:** Port `8080` or the one specified in `main.go` must be available.
 
@@ -23,6 +21,28 @@ A simple Golang REST API for DNS queries.
 3. To run on host system
   1. `go build main.go`
   2. `./main` or `.\main.exe`
+
+### Docker
+
+To Build and Run:
+
+    NOTE 1: Port 8880 or the one specified in docker-compose.yml and main.go must be available.
+    NOTE 2: On Windows 10 Pro or greater? You can use Chocolatey to install Docker Desktop for Windows and everything else listed below.
+
+    Install Docker and Docker Compose.
+
+    Docker
+        Chocolatey for Windows
+    Docker Compose
+        Chocolatey for Windows
+
+    Build and Run the container:
+        docker-compose build
+        docker-compose up
+
+    To stop
+        docker-compose down
+
 
 
 ### Endpoints:
